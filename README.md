@@ -14,7 +14,6 @@ Production-grade GitOps platform built with Terraform, EKS, ArgoCD, Prometheus &
 
 ## Architecture
 ## Architecture Diagram
-## Architecture Diagram
 
 ```mermaid
 flowchart TD
