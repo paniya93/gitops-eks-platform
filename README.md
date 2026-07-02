@@ -60,7 +60,8 @@ flowchart TD
 
     style ArgoCD fill:#22c55e,stroke:#166534,color:white
     style Grafana fill:#a855f7,stroke:#6b21a8,color:white
-    style Prometheus fill:#f59e0b,stroke:#b45309,color:white ````
+    style Prometheus fill:#f59e0b,stroke:#b45309,color:white
+```
 
 
 ## Quick Start
