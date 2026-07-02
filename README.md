@@ -14,26 +14,23 @@ Production-grade GitOps platform built with Terraform, EKS, ArgoCD, Prometheus &
 
 ## Architecture
 ## Architecture Diagram
+## Architecture Diagram
 
 ```mermaid
 flowchart TD
     %% Git Layer
     GitHub[GitHub Repository] 
-    Terraform[Terraform IaC\nEKS Cluster + State]
-    ArgoManifests[ArgoCD Applications\n+ Helm Charts]
+    Terraform[Terraform IaC<br>EKS Cluster + State]
+    ArgoManifests[ArgoCD Applications<br>+ Helm Charts]
     Dashboards[Grafana Dashboards + Alerts]
 
     %% AWS Layer
-    AWS[AWS Cloud]
-    S3[(S3 Remote State)]
-    Dynamo[(DynamoDB Lock)]
-
     subgraph EKSCluster ["AWS EKS Cluster (3 Nodes)"]
         Control[EKS Control Plane]
         
         subgraph RBAC ["Namespaces & RBAC"]
-            TeamAlpha[team-alpha\n+ Least-Privilege SA]
-            TeamBeta[team-beta\n+ Least-Privilege SA]
+            TeamAlpha[team-alpha<br>Least-Privilege SA]
+            TeamBeta[team-beta<br>Least-Privilege SA]
         end
 
         subgraph GitOpsLayer ["GitOps - ArgoCD"]
@@ -42,18 +39,16 @@ flowchart TD
 
         subgraph Observability ["Monitoring & Observability"]
             Prometheus[Prometheus]
-            Grafana[Grafana\n+ SLO Dashboards]
+            Grafana[Grafana<br>+ SLO Dashboards]
         end
 
-        Workloads[Sample Workloads\n+ Future Apps]
+        Workloads[Sample Workloads]
     end
 
     GitHub --> Terraform
     GitHub --> ArgoManifests
     GitHub --> Dashboards
 
-    Terraform --> S3
-    Terraform --> Dynamo
     Terraform --> EKSCluster
 
     ArgoManifests --> ArgoCD
@@ -62,7 +57,7 @@ flowchart TD
     ArgoCD -->|Auto Sync + Self-Heal| Observability
 
     Prometheus -->|Scrapes Metrics| Grafana
-    Grafana -->|Visualizations + Alerts| User[Developers / Platform Team]
+    Grafana -->|Visualizations + Alerts| Users[Developers / Platform Team]
 
     style ArgoCD fill:#22c55e,stroke:#166534,color:white
     style Grafana fill:#a855f7,stroke:#6b21a8,color:white
